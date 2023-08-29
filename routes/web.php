@@ -31,13 +31,13 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
 
-
+    Route::get('/posts/create', [\App\Http\Controllers\PostController::class, 'create']);
+    Route::post('/posts', [\App\Http\Controllers\PostController::class, 'store']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::get('/posts/create', [\App\Http\Controllers\PostController::class, 'create']);
-Route::post('/posts', [\App\Http\Controllers\PostController::class, 'store']);
+
 
 require __DIR__.'/auth.php';
